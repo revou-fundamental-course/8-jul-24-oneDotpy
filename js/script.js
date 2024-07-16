@@ -23,8 +23,10 @@ document.getElementById('form-bmi').addEventListener('submit', function(event) {
   // Melakukan perhitungan BMI menggunakan formula yang sudah ditentukan
   if (!isNaN(weight) && !isNaN(height) && height > 0 && age > 0 && gender != '') {
     const bmi = (weight / (height * height)).toFixed(1);
+    const ideal = `Berat badan ideal: ${Math.round((height * height) * 18.5)} kg - ${Math.round((height * height) * 24.9)} kg`;
     if (bmi > 0 && bmi <= 100) {
-      displayResult(bmi);
+      displayResult(bmi, ideal);
+      
     } 
     else {
       alert('Masukkan tinggi dan berat badan yang valid!');
@@ -63,12 +65,13 @@ function scrollToTop() {
 
 
 // Function untuk menampilkan hasil dari perhitungan BMI
-function displayResult(bmi) {
+function displayResult(bmi, ideal) {
   const resultContainer = document.getElementById('result-container');
   const bmiValueElement = document.getElementById('bmi-value');
   const resultLabelElement = document.querySelector('.resultLabel');
   const resultDescriptionElement = document.querySelector('.resultDescription');
   const detailedDescriptionElement = document.getElementById('result-detailed-description');
+  const idealDescriptionElement = document.getElementById('result-ideal-bb');
 
   let resultLabel = '';
   let resultDescription = '';
@@ -91,15 +94,27 @@ function displayResult(bmi) {
     resultDescription = 'Anda memiliki obesitas.';
     detailedDescription = 'Anda berada dalam kategori obesitas. Sangat disarankan untuk berkonsultasi dengan ahli gizi dan dokter untuk rencana penurunan berat badan yang sehat.';
   }
-
+  
+  
   bmiValueElement.textContent = bmi;
   resultLabelElement.textContent = resultLabel;
   resultDescriptionElement.textContent = resultDescription;
   detailedDescriptionElement.textContent = detailedDescription;
+  idealDescriptionElement.textContent = ideal;
 
   resultContainer.style.display = 'block';
   resultContainer.scrollIntoView({ behavior: 'smooth' });
 }
+
+document.querySelector('.consultButton').addEventListener('click', function() {
+  window.open('https://www.google.com/search?q=konsultasi+ahli+gizi+via+aplikasi&rlz=1C1UEAD_enID1063ID1063&oq=konsultasi+ahli+gizi+via+aplikasi&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDU2ODBqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8', '_blank');
+});
+
+
+document.querySelector('.registerButton').addEventListener('click', function() {
+  window.open('https://www.google.com/search?q=konsultasi+ahli+gizi+online&rlz=1C1UEAD_enID1063ID1063&oq=konsultasi+ahli+gizi+online&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDQ4MzdqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8', '_blank');
+});
+
 
 // Menambahkan event listener ke semua input untuk mendeteksi jika ada perubahan di salah satu input
 const inputs = document.querySelectorAll('#input-bb, #input-tb, #input-usia, #selection-pria, #selection-wanita');
