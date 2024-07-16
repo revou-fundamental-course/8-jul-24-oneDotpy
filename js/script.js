@@ -56,6 +56,7 @@ window.addEventListener('scroll', function() {
   }
 });
 
+// Function scroll to top yang menjadi function yang di run saat button back to top di klik
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
