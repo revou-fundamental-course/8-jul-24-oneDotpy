@@ -130,12 +130,12 @@ function displayResult(bmi, ideal, weight, height, age, gender) {
 
 
 document.querySelector('.consultButton').addEventListener('click', function() {
-  window.open('https://www.google.com/search?q=konsultasi+ahli+gizi+via+aplikasi&rlz=1C1UEAD_enID1063ID1063&oq=konsultasi+ahli+gizi+via+aplikasi&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDU2ODBqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8', '_blank');
+  window.open('https://ilmugiziku.com/2021/11/30/berbagai-aplikasi-gizi-mahasiswa-gizi-wajib-tahu/', '_blank');
 });
 
 
 document.querySelector('.registerButton').addEventListener('click', function() {
-  window.open('https://www.google.com/search?q=konsultasi+ahli+gizi+online&rlz=1C1UEAD_enID1063ID1063&oq=konsultasi+ahli+gizi+online&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDQ4MzdqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8', '_blank');
+  window.open('https://www.halodoc.com/artikel/chat-dokter-spesialis-gizi-online-pengertian-dan-cara-kerjanya', '_blank');
 });
 
 
