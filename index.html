@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/style.css">
+  <!-- Judul Website -->
+  <title>Kalkulator BMI</title>
+</head>
+<body>
+  <!-- Menandakan poin paling atas dari website untuk fitur back to top -->
+  <a id="top"></a>
+
+  <!-- Menandakan bagian utama website (berisi form dan juga hasil) -->
+  <main>
+    <!-- Bagian form pengisian data-data -->
+    <h1>Kalkulator BMI</h1>
+    <section class="formContainer">
+      <form id="form-bmi">
+        <div class="inputGroup">
+          <label for="selection-pria">Pria</label>
+          <input type="radio" name="gender" id="selection-pria">
+        </div>
+        <div class="inputGroup">
+          <label for="selection-wanita">Wanita</label>
+          <input type="radio" name="gender" id="selection-wanita">
+        </div>
+
+        <div class="inputGroup">
+          <label for="input-bb">Berat Badan (kg)</label>
+          <input type="number" id="input-bb">
+        </div>
+
+        <div class="inputGroup">
+          <label for="input-tb">Tinggi Badan (cm)</label>
+          <input type="number" id="input-tb">
+        </div>
+
+        <div class="inputGroup">
+          <label for="input-usia">Usia</label>
+          <input type="number" id="input-usia">
+        </div>
+
+        <div class="buttonGroup">
+          <button type="submit">Hitung BMI</button>
+          <button type="reset">Reset</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Bagian hasil (baru akan muncul ketika data yang dimasukkan benar dan berhasil di proses oleh JS) -->
+    <section class="resultContainer" id="result-container" style="display: none;">
+      <div class="result">
+        <h2>Hasil</h2>
+        <div class="resultContent">
+          <p class="resultLabel">Berat Badan Lebih</p>
+          <p class="resultValue" id="bmi-value">24.7</p>
+          <p class="resultDescription">Anda memiliki berat badan berlebih</p>
+          <!-- Button download dummy -->
+          <button class="downloadButton">Download Hasil BMI</button>
+        </div>
+        <!-- Paragraph yang ditampilkan berdasarkan hasil perhitungan BMI yang di handle oleh JS -->
+        <p id="result-detailed-description"></p>
+        <!-- Button-button dummy pelengkap -->
+        <div class="consultationButtons">
+          <button class="consultButton">Konsultasi Ahli Gizi Via Aplikasi</button>
+          <button class="registerButton">Registrasi Online Ahli Gizi</button>
+        </div>
+        <p>BMI tidak sepenuhnya mewakili diagnosis menyeluruh dari kesehatan tubuh dan resiko penyakit seseorang. Anda perlu konsultasi lebih lanjut mengenai resiko dan kekhawatiran Anda terkait dengan berat badan Anda.</p>
+      </div>
+    </section>
+  </main>
+  <!-- Button yang digunakan untuk kembali ke top of page (icon menggunakan HTML entity) -->
+  <button id="back-to-top" onclick="scrollToTop()">&#8682;</button>
+  <script src="./js/script.js"></script>
+</body>
+</html>
