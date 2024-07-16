@@ -7,17 +7,17 @@ document.getElementById('form-bmi').addEventListener('submit', function(event) {
   const weight = parseFloat(document.getElementById('input-bb').value);
   const height = parseFloat(document.getElementById('input-tb').value) / 100;
   const age = parseFloat(document.getElementById('input-usia').value)
-
+  console.log(`${weight} kg, ${height * 100} cm, ${age} Tahun`)
 
   // Spesifik untuk gender, memproses input radio button dari HTML
   let gender = ''
 
   if (document.getElementById('selection-pria').checked) {
-    gender = 'pria'
+    gender = 'Pria'
   }
 
   else if (document.getElementById('selection-wanita').checked) {
-    gender = 'wanita'
+    gender = 'Wanita'
   }
 
   // Melakukan perhitungan BMI menggunakan formula yang sudah ditentukan
@@ -25,7 +25,7 @@ document.getElementById('form-bmi').addEventListener('submit', function(event) {
     const bmi = (weight / (height * height)).toFixed(1);
     const ideal = `Berat badan ideal: ${Math.round((height * height) * 18.5)} kg - ${Math.round((height * height) * 24.9)} kg`;
     if (bmi > 0 && bmi <= 100) {
-      displayResult(bmi, ideal);
+      displayResult(bmi, ideal, weight, height, age, gender);
       
     } 
     else {
@@ -65,7 +65,7 @@ function scrollToTop() {
 
 
 // Function untuk menampilkan hasil dari perhitungan BMI
-function displayResult(bmi, ideal) {
+function displayResult(bmi, ideal, weight, height, age, gender) {
   const resultContainer = document.getElementById('result-container');
   const bmiValueElement = document.getElementById('bmi-value');
   const resultLabelElement = document.querySelector('.resultLabel');
@@ -104,7 +104,30 @@ function displayResult(bmi, ideal) {
 
   resultContainer.style.display = 'block';
   resultContainer.scrollIntoView({ behavior: 'smooth' });
-}
+
+  // Attach download event
+  document.querySelector('.downloadButton').addEventListener('click', function() {
+    generatePDF(weight, height, age, gender, bmi, resultLabel);
+  });
+  }
+
+  function generatePDF(weight, height, age, gender, bmi, resultLabel) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    doc.text("Nama: Guest", 10, 10);
+    doc.text(`Jenis Kelamin: ${gender}`, 10, 20);
+    doc.text(`Tinggi Badan: ${height * 100} cm`, 10, 30);
+    doc.text(`Berat Badan: ${weight} kg`, 10, 40);
+    doc.text(`Usia: ${age} Tahun`, 10, 50);
+    doc.text(`BMI: ${bmi}`, 10, 60);
+    doc.text(`Kategori: ${resultLabel}`, 10, 70);
+
+    doc.save("hasil_bmi.pdf");
+  }
+
+
+
 
 document.querySelector('.consultButton').addEventListener('click', function() {
   window.open('https://www.google.com/search?q=konsultasi+ahli+gizi+via+aplikasi&rlz=1C1UEAD_enID1063ID1063&oq=konsultasi+ahli+gizi+via+aplikasi&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDU2ODBqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8', '_blank');
