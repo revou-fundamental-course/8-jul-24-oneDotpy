@@ -23,7 +23,7 @@ document.getElementById('form-bmi').addEventListener('submit', function(event) {
   // Melakukan perhitungan BMI menggunakan formula yang sudah ditentukan
   if (!isNaN(weight) && !isNaN(height) && height > 0 && age > 0 && gender != '') {
     const bmi = (weight / (height * height)).toFixed(1);
-    const ideal = `Berat badan ideal: ${Math.round((height * height) * 18.5)} kg - ${Math.round((height * height) * 24.9)} kg`;
+    const ideal = `Berat badan ideal: ${Math.round((height * height) * 18.5) + 1} kg - ${Math.round((height * height) * 24.9) - 1} kg`;
     if (bmi > 0 && bmi <= 100) {
       displayResult(bmi, ideal, weight, height, age, gender);
       
