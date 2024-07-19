@@ -187,6 +187,7 @@ inputs.forEach(input => {
 // Menambahkan event listener ke tombol ganti bahasa
 document.getElementById('language-toggle').addEventListener('change', function() {
   const language = document.documentElement.lang;
+  console.log(`Bahasa : ${document.documentElement.lang}`)
   if (language === 'id') {
     document.documentElement.lang = 'en';
     document.title = 'BMI Calculator';
@@ -224,3 +225,5 @@ document.getElementById('language-toggle').addEventListener('change', function()
   // Hilangkan hasil ketika tombol ganti bahasa diklik
   document.getElementById('result-container').style.display = 'none';
 });
+
+
