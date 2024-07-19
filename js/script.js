@@ -123,7 +123,7 @@ function displayResult(bmi, ideal, weight, height, age, gender) {
 
   // Attach download event
   document.querySelector('.downloadButton').addEventListener('click', function() {
-    generatePDF(weight, height, age, gender, bmi, resultLabel);
+    generatePDF(weight, height, age, gender, bmi, resultLabel, document);
   });
 
   // Sembunyikan tombol ganti bahasa
@@ -131,19 +131,35 @@ function displayResult(bmi, ideal, weight, height, age, gender) {
 }
 
 // Function untuk menggenerate PDF dengan menggunakan jsPDF
-function generatePDF(weight, height, age, gender, bmi, resultLabel) {
+function generatePDF(weight, height, age, gender, bmi, resultLabel, document) {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
+  if (document.documentElement.lang === 'id') {
+    doc.text("Nama: Guest", 10, 10);
+    doc.text(`Jenis Kelamin: ${gender}`, 10, 20);
+    doc.text(`Tinggi Badan: ${height * 100} cm`, 10, 30);
+    doc.text(`Berat Badan: ${weight} kg`, 10, 40);
+    doc.text(`Usia: ${age} Tahun`, 10, 50);
+    doc.text(`BMI: ${bmi}`, 10, 60);
+    doc.text(`Kategori BMI: ${resultLabel}`, 10, 70);
 
-  doc.text("Nama: Guest", 10, 10);
-  doc.text(`Jenis Kelamin: ${gender}`, 10, 20);
-  doc.text(`Tinggi Badan: ${height * 100} cm`, 10, 30);
-  doc.text(`Berat Badan: ${weight} kg`, 10, 40);
-  doc.text(`Usia: ${age} Tahun`, 10, 50);
-  doc.text(`BMI: ${bmi}`, 10, 60);
-  doc.text(`Kategori: ${resultLabel}`, 10, 70);
-
-  doc.save("hasil_bmi.pdf");
+    doc.save("hasil_bmi.pdf");
+  } else {
+    if (gender === 'Pria') {
+      actual_gender = 'Male'
+    }
+    else {
+      actual_gender = 'Female'
+    }
+    doc.text("Name: Guest", 10, 10);
+    doc.text(`Gender: ${actual_gender}`, 10, 20);
+    doc.text(`Height: ${height * 100} cm`, 10, 30);
+    doc.text(`Weight: ${weight} kg`, 10, 40);
+    doc.text(`Age: ${age} Tahun`, 10, 50);
+    doc.text(`BMI: ${bmi}`, 10, 60);
+    doc.text(`BMI Category: ${resultLabel}`, 10, 70);
+    doc.save("bmi_result.pdf");
+  }
 }
 
 // Menambahkan event listener ke tombol konsultasi untuk membuka link konsultasi
